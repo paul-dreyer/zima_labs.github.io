@@ -1,0 +1,265 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;display=swap" rel="stylesheet"/>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,300,500&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tailwind/tailwind.min.css"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="fav-icon.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer="defer"></script>
+  </head>
+  <body class="antialiased bg-body text-body font-body">
+    <div>
+      <section class="relative overflow-hidden" x-data="{ mobileNavOpen: false }">
+        <div class="container px-4 mx-auto">
+          <div class="flex items-center justify-between pt-6 -m-2">
+            <div class="w-auto p-2">
+              <div class="flex flex-wrap items-center">
+                <div class="w-auto"><a class="relative z-10 inline-block" href="index.html"><img src="images/logo-transparent.png" style="max-height: 60px;" alt=""/></a></div>
+              </div>
+            </div>
+            <div class="w-auto p-2">
+              <div class="flex flex-wrap items-center">
+                <div class="w-auto hidden lg:block">
+                  <ul class="flex items-center mr-12">
+                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Home</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="about.html">About</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
+                    <li class="text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Documentation</a></li>
+                  </ul>
+                </div>
+                <div class="w-auto hidden lg:block">
+                  <div class="inline-block"><a class="inline-block px-8 py-4 text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300" href="contact.html">Contact</a></div>
+                </div>
+                <div class="w-auto lg:hidden">
+                  <button class="relative z-10 inline-block" x-on:click="mobileNavOpen = !mobileNavOpen">
+                    <svg class="text-green-500" width="51" height="51" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="56" height="56" rx="28" fill="currentColor"></rect>
+                      <path d="M37 32H19M37 24H19" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50" :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}">
+          <div class="fixed inset-0 bg-black opacity-60" x-on:click="mobileNavOpen = !mobileNavOpen"></div>
+          <nav class="relative z-10 px-9 pt-8 h-full bg-black overflow-y-auto">
+            <div class="flex flex-wrap justify-between h-full">
+              <div class="w-full">
+                <div class="flex items-center justify-between -m-2">
+                  <div class="w-auto p-2"><a class="inline-block" href="#"><img src="images/logo-transparent.png" style="max-height: 150px;" alt=""/></a></div>
+                  <div class="w-auto p-2">
+                    <button class="inline-block text-white" x-on:click="mobileNavOpen = !mobileNavOpen">
+                      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center py-16 w-full">
+                <ul>
+                  <li class="mb-8 text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Home</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-green-400 tracking-tighter"><a href="about.html">About</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-green-400 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
+                  <li class="text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Documentation  </a></li>
+                </ul>
+              </div>
+              <div class="flex flex-col justify-end w-full pb-8"><a class="inline-block px-8 py-4 bg-green-400 text-center text-black hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300" href="contact.html">Contact</a></div>
+            </div>
+          </nav>
+        </div>
+        <div class="relative pt-20 lg:pt-28">
+          <div class="relative z-10 container px-4 mx-auto">
+            <div class="relative mb-24 text-center md:max-w-4xl mx-auto">
+              <h1 class="font-heading mb-10 text-7xl lg:text-8xl xl:text-10xl text-white tracking-tighter">A Better Data Pipeline</h1>
+            </div>
+            <div class="relative max-w-max mx-auto"><img src="images/how_it_works_icons.png" style="max-height: 500px;" alt=""/></div>
+            <div class="max-w-lg mx-auto text-center" style="max-width: 600px;">
+              <h2 class="font-heading mb-6 text-7xl lg:text-8xl text-green-400 tracking-8xl md:max-w-md mx-auto" style="max-width: 700px;">Synthetic Generation</h2>
+              <h3 class="mb-6 text-2xl text-white tracking-tighter-xl">Generate synthetic training data from existing CAD assets</h3>
+            </div>
+          </div>
+        </div><img class="absolute top-0 left-48" src="template-assets/images/headers/layer-blur.svg" alt=""/><img class="absolute bottom-0 right-0" src="template-assets/images/headers/lines2.svg" alt=""/>
+      </section>
+      <section class="pt-20 pb-24 bg-blueGray-950">
+        <div class="container px-4 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="relative mb-4 overflow-hidden rounded-5xl group"><img class="w-full transform group-hover:scale-125 transition duration-1000" src="template-assets/images/cards/3D_print_purple_large_thumbnail.png" alt=""/>
+                <div class="absolute left-0 bottom-0 w-full p-8 bg-gradient-card flex flex-col justify-end z-10">
+                  <h3 class="text-3xl text-white tracking-3xl mb-2">Manufacturing</h3><span class="text-white text-lg group-hover:underline">See Demo ▶</span>
+                </div><a class="see-demo-btn absolute inset-0 z-20" href="#" data-video-id="dQw4w9WgXcQ" aria-label="See demo"></a>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="relative mb-4 overflow-hidden rounded-5xl group"><img class="w-full transform group-hover:scale-125 transition duration-1000" src="template-assets/images/cards/mars_thumbnail_square.png" alt=""/>
+                <div class="absolute left-0 bottom-0 w-full p-8 bg-gradient-card flex flex-col justify-end z-10">
+                  <h3 class="text-3xl text-white tracking-3xl mb-2">Robotics</h3><span class="text-white text-lg group-hover:underline">See Demo ▶</span>
+                </div><a class="see-demo-btn absolute inset-0 z-20" href="#" data-video-id="dQw4w9WgXcQ" aria-label="See demo"></a>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="relative mb-4 overflow-hidden rounded-5xl group"><img class="w-full transform group-hover:scale-125 transition duration-1000" src="template-assets/images/cards/wire_harness_thumbnail_square.png" alt=""/>
+                <div class="absolute left-0 bottom-0 w-full p-8 bg-gradient-card flex flex-col justify-end z-10">
+                  <h3 class="text-3xl text-white tracking-3xl mb-2">Assembly</h3><span class="text-white text-lg group-hover:underline">See Demo ▶</span>
+                </div><a class="see-demo-btn absolute inset-0 z-20" href="#" data-video-id="dQw4w9WgXcQ" aria-label="See demo"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="relative py-18 overflow-hidden">
+        <div class="container px-4 mx-auto">
+          <div class="mb-10 md:max-w-2xl text-center mx-auto">
+            <h2 class="font-heading text-7xl lg:text-8xl text-white tracking-tighter-xl">Data Capabilities</h2>
+          </div>
+          <div class="flex flex-wrap -m-5 pb-8">
+            <div class="w-full md:w-1/2 px-4 mt-4">
+              <div class="relative flex flex-col justify-end pb-8 h-full bg-gradient-radial-dark overflow-hidden border border-gray-900 border-opacity-30 rounded-5xl"><img class="mb-8 rounded-5xl" src="template-assets/images/data_types/mars_bounding_box_thumbnail.png" alt=""/>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full">Bounding Box</h2>
+                </div>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-lg text-white tracking-tighter break-words text-balance max-w-full">The XY coordinates of the box containing an object of interest</h2>
+                </div><img class="absolute bottom-0 right-0" src="template-assets/images/data_types/bg-gray.png" alt=""/>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 px-4 mt-4">
+              <div class="relative flex flex-col justify-end pb-8 h-full bg-gradient-radial-dark overflow-hidden border border-gray-900 border-opacity-30 rounded-5xl"><img class="mb-8 rounded-5xl" src="template-assets/images/data_types/contour_thumbnail.png" alt=""/>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full">Edge Contour</h2>
+                </div>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-lg text-white tracking-tighter break-words text-balance max-w-full">A polygon describing the edges of an object of interest</h2>
+                </div><img class="absolute bottom-0 right-0" src="template-assets/images/data_types/bg-gray.png" alt=""/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap -m-5 pb-5">
+            <div class="w-full md:w-1/2 px-4 mt-4">
+              <div class="relative flex flex-col justify-end pb-8 h-full bg-gradient-radial-dark overflow-hidden border border-gray-900 border-opacity-30 rounded-5xl"><img class="mb-8 rounded-5xl" src="template-assets/images/data_types/bins_segmentation_thumbnail.png" alt=""/>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full">Segmentation</h2>
+                </div>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-lg text-white tracking-tighter break-words text-balance max-w-full">Per-pixel masking of an object of interest</h2>
+                </div><img class="absolute bottom-0 right-0" src="template-assets/images/data_types/bg-gray.png" alt=""/>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 px-4 mt-4">
+              <div class="relative flex flex-col justify-end pb-8 h-full bg-gradient-radial-dark overflow-hidden border border-gray-900 border-opacity-30 rounded-5xl"><img class="mb-8 rounded-5xl" src="template-assets/images/data_types/bins_segmentation_thumbnail.png" alt=""/>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full">Pose</h2>
+                </div>
+                <div class="relative z-10 max-w-md text-center mx-auto">
+                  <h2 class="text-lg text-white tracking-tighter break-words text-balance max-w-full">The position and orientation of an object of interest</h2>
+                </div><img class="absolute bottom-0 right-0" src="template-assets/images/data_types/bg-gray.png" alt=""/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="relative py-24 overflow-hidden">
+        <div class="mb-10 md:max-w-2xl text-center mx-auto">
+          <h2 class="font-heading text-7xl lg:text-8xl text-white tracking-tighter-xl">Features</h2>
+        </div>
+        <div class="container px-4 mx-auto">
+          <div class="flex flex-wrap justify-between px-5 pt-5 pb-16 bg-gradient-radial-dark overflow-hidden border border-gray-900 border-opacity-30 rounded-5xl">
+            <div class="w-full md:w-1/2 mb-14">
+              <div class="relative z-10 md:max-w-xl mx-auto">
+                <div class="flex flex-col items-center mb-6">
+                  <h2 class="font-heading text-5xl text-white tracking-tighter-xl">Meta Data</h2>
+                </div>
+                <h3 class="mb-6 text-xl text-white tracking-tighter-xl">A huge advantage to using synthetic data is the meta-data we can track for each image, allowing for a much deeper understanding of the context of the image. With our data sets, your team can easily create curriculum-learning training routines, only exposing the network to instances with low object occlusion rates early in training, and gradually exposing instances with more object occlusion as the network learns</h3>
+                <div class="flex flex-wrap justify-center">
+                  <ul>
+                    <li class="flex mb-3.5"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Object-to-camera occlusion %</span></li>
+                    <li class="flex mb-3.5"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Camera pose (location + orientation) </span></li>
+                    <li class="flex mb-3.5"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Lighting locations and intensities</span></li>
+                    <li class="flex"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Surface materials and texture tracking </span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2">
+              <div class="relative z-10 md:max-w-xl mx-auto">
+                <div class="flex flex-col items-center mb-6">
+                  <h2 class="font-heading text-5xl text-white tracking-tighter-xl">Python Support</h2>
+                </div>
+                <h3 class="mb-6 text-xl text-white tracking-tighter-xl">We've published a public python module which offers dataset manipulation utilities, allowing your team to start training sooner and deploy models faster.</h3>
+                <div class="flex justify-center mx-auto">
+                  <ul>
+                    <li class="flex mb-3.5"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Domain randomization analysis</span></li>
+                    <li class="flex mb-3.5"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Ablation subset filtering</span></li>
+                    <li class="flex"><img class="mr-3.5" src="template-assets/images/data_types/checked.svg" alt=""/><span class="text-green-300 text-xl">Formatting for YOLO training</span></li>
+                  </ul>
+                </div>
+                <div class="flex justify-center items-center pt-5"><a class="inline-flex items-center gap-3 px-8 py-4 text-xl text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300" href="index.html"><img class="h-8 w-auto" src="template-assets/images/logo-clouds/python-logo.png" alt="Python Logo"/>Read The Docs</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-gray-50 overflow-hidden">
+        <div class="py-14 bg-body rounded-b-5xl"></div>
+        <div class="py-12">
+          <div class="container px-4 mx-auto">
+            <div class="flex flex-wrap justify-center -m-8 mb-28">
+              <div class="w-full md:w-1/2 lg:w-4/12 p-8">
+                <div class="flex flex-col md:max-w-md items-center"><img class="mb-7" src="images/logo-dark-transparent.png" alt=""/>
+                  <p class="text-gray-400 font-medium">Take your computer vision capabilities to new heights</p>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 lg:w-2/12 p-8">
+                <ul>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-500 hover:text-black transition duration-300" href="index.html">Home</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-500 hover:text-black transition duration-300" href="about.html">About</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-500 hover:text-black transition duration-300" href="gallery.html">Gallery</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-500 hover:text-black transition duration-300" href="documentation.html">Documentation</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-500 hover:text-black transition duration-300" href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden" id="video-modal">
+      <div class="relative w-full max-w-4xl aspect-video">
+        <button class="absolute top-2 right-2 text-white text-3xl font-bold z-10 hover:text-gray-300" id="close-modal">&times;</button>
+        <iframe class="w-full h-full rounded-lg" id="video-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const modal = document.getElementById("video-modal");
+  const iframe = document.getElementById("video-frame");
+  const closeBtn = document.getElementById("close-modal");
+  
+  document.querySelectorAll(".see-demo-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const videoId = btn.dataset.videoId;
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      modal.classList.remove("hidden");
+    });
+  });
+  
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    iframe.src = "";
+  });
+  
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.classList.add("hidden");
+      iframe.src = "";
+    }
+  });
+</script>
