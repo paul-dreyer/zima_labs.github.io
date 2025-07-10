@@ -109,12 +109,43 @@
           <div class="max-w-5xl mx-auto">
             <div class="flex flex-wrap items-center justify-center mx-auto">
               <div class="w-full md:w-3/4 px-4 lg:px-12">
-                <h2 class="font-heading text-3xl text-green-300 tracking-tighter-xl mb-2">Papers</h2>
+                <h2 class="font-heading text-3xl text-green-300 tracking-tighter-xl mb-2">Related Papers</h2>
               </div>
               <div class="w-full md:w-3/4 px-4 lg:px-12" x-data="{ expanded: false }">
-                <h2 class="font-heading text-2xl text-white tracking-tighter-xl mb-2">Domain randomization for transferring deep neural networks from simulation to the real world</h2>
+                <h2 class="font-heading text-2xl text-white tracking-tighter-xl">Synthetic Image Data for Deep Learning</h2>
                 <p class="transition-all duration-300" :class="expanded ? 'text-gray-400' : 'text-gray-400 line-clamp-1'">
-                  Bridging the ‘reality gap’ that separates simulated robotics from experiments on hardware could accelerate robotic
+                  Abstract—Realistic synthetic image data rendered from 3D
+                  models can be used to augment image sets and train image
+                  classification semantic segmentation models. In this work, we
+                  explore how high quality physically-based rendering and domain
+                  randomization can efficiently create a large synthetic dataset
+                  based on production 3D CAD models of a real vehicle. We use this
+                  dataset to quantify the effectiveness of synthetic augmentation
+                  using U-net and Double-U-net models. We found that, for
+                  this domain, synthetic images were an effective technique for
+                  augmenting limited sets of real training data. We observed that
+                  models trained on purely synthetic images had a very low mean
+                  prediction IoU on real validation images. We also observed that
+                  adding even very small amounts of real images to a synthetic
+                  dataset greatly improved accuracy, and that models trained on
+                  datasets augmented with synthetic images were more accurate
+                  than those trained on real images alone.
+                  Finally, we found that in use cases that benefit from incremen-
+                  tal training or model specialization, pretraining a base model on
+                  synthetic images provided a sizeable reduction in the training cost
+                  of transfer learning, allowing up to 90% of the model training
+                  to be front-loaded.
+                </p>
+                <button class="text-green-400 text-sm font-medium flex items-center space-x-1 hover:underline focus:outline-none" @click="expanded = !expanded"><span x-text="expanded ? 'Show less' : 'Show more'"></span>
+                  <svg class="w-4 h-4 transform transition-transform duration-300" :class="expanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </button>
+                <button class="view-paper-button mt-4 mb-8 inline-block px-6 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm" data-paper-id="paper1">View Paper</button>
+              </div>
+              <div class="w-full md:w-3/4 px-4 lg:px-12" x-data="{ expanded: false }">
+                <h2 class="font-heading text-2xl text-white tracking-tighter-xl">Domain randomization for transferring deep neural networks from simulation to the real world</h2>
+                <p class="transition-all duration-300" :class="expanded ? 'text-gray-400' : 'text-gray-400 line-clamp-1'">
+                  Abstract—Bridging the ‘reality gap’ that separates simulated robotics from experiments on hardware could accelerate robotic
                   research through improved data availability. This paper ex- plores domain randomization, a simple technique for training
                   models on simulated images that transfer to real images by ran- domizing rendering in the simulator. With enough variability in
                   the simulator, the real world may appear to the model as just another variation. We focus on the task of object localization,
@@ -124,11 +155,11 @@
                   in a cluttered environment. To our knowledge, this is the first successful transfer of a deep neural network trained only on
                   simulated RGB images (without pre-training on real images) to the real world for the purpose of robotic control.
                 </p>
-                <button class="text-green-400 text-sm font-medium flex items-center space-x-1 hover:underline focus:outline-none" @click="expanded = !expanded"><span x-text="expanded ? 'Show less' : 'Read more'"></span>
+                <button class="text-green-400 text-sm font-medium flex items-center space-x-1 hover:underline focus:outline-none" @click="expanded = !expanded"><span x-text="expanded ? 'Show less' : 'Show more'"></span>
                   <svg class="w-4 h-4 transform transition-transform duration-300" :class="expanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </button>
-                <button class="view-paper-button mt-4 inline-block px-6 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm" data-paper-id="paper1">View Paper</button>
+                <button class="view-paper-button mt-4 mb-8 inline-block px-6 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm" data-paper-id="paper2">View Paper</button>
               </div>
             </div>
           </div>
@@ -189,7 +220,8 @@
 </html>
 <script>
   const paperPaths = {
-    paper1: "template-assets/pdf/Domain_randomization_for_transferring_deep_neural_networks_from_simulation_to_the_real_world.pdf",
+    paper1: "template-assets/pdf/Synthetic_Image_Data_for_Deep_Learning.pdf",
+    paper2: "template-assets/pdf/Domain_randomization_for_transferring_deep_neural_networks_from_simulation_to_the_real_world.pdf",
     // Add more papers here
   };
   
