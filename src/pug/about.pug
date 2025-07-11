@@ -70,30 +70,46 @@ html(lang="en")
 
                     div(class="md:max-w-xl text-center mx-auto mb-10")
                         h2(class="font-heading text-7xl text-white tracking-tighter-xl") About Synthetic Data
+
                     div(class="max-w-5xl mx-auto")
                         div(class="flex flex-wrap items-center justify-center mx-auto")
                             div(class="w-full md:w-3/4 px-4 lg:px-12")
                                 h2(class="font-heading text-3xl text-green-300 tracking-tighter-xl mb-2") Curriculum Learning
-                                p(class="mb-10 text-white") 
-                                    | When we train policies control walking robots, we never start 
-                                    | by asking the model to move the robot up a flight of steps, or 
-                                    | traverse rough terrain. We start with a simple goal, and 
-                                    | we gradually increase the difficulty of the tasks we ask the 
-                                    | model to learn. This is called "curriculum learning", and it's
-                                    | standard practice across almost every deep learning based
-                                    | policy in robotics, but it's completely overlooked in training
-                                    | computer vision models. This is largely due to the challenge
-                                    | of representing how 'difficult' a particular image is to
-                                    | ask the model to inference on. We're changing that. Every
-                                    | image-label pair we create comes with a meta data file, that
-                                    | describes a ton of information about the corresponding image
-                                    | instance. Want to just train your model with images that have 
-                                    | less than 5% occlusion for the first milestone, and gradually 
-                                    | introduce images where the % of object occlusion rises? Done. 
-                                    | Want to start with images where key objects only appear within 
-                                    | some smaller region of the image, or exist within certain
-                                    | distance bounds from the camera? Done.
+                                p(class="mb-4 text-gray-300") 
+                                    | In robotics, control policies are typically trained on simple 
+                                    | tasks first — like balancing — before progressing to more 
+                                    | complex challenges such as walking or stair climbing. This 
+                                    | approach, known as curriculum learning, helps models learn 
+                                    | more effectively. Yet in computer vision, it's rarely applied,
+                                    | largely because it's hard to define how “difficult” an image 
+                                    | is for a model to interpret.
 
+                                p(class="mb-10 text-gray-300") 
+                                    | Our datasets change that. Every image-label pair includes rich
+                                    | metadata that captures scene complexity — like object 
+                                    | occlusion, position and  orientation, lighting conditions, etc.
+                                    | — making it easy to structure a learning curriculum. Want to 
+                                    | begin with clear, unobstructed views and gradually introduce 
+                                    | clutter and occlusion? Done. Our synthetic data makes 
+                                    | curriculum learning in vision not only possible — but practical.
+
+                    div(class="max-w-5xl mx-auto")
+                        div(class="flex flex-wrap items-center justify-center mx-auto")
+                            div(class="w-full md:w-3/4 px-4 lg:px-12")
+                                h2(class="font-heading text-3xl text-green-300 tracking-tighter-xl mb-2") Domain Randomization
+                                p(class="mb-4 text-gray-300") 
+                                    | To build models that generalize to the real world, it's 
+                                    | critical to expose them to wide variations during training — 
+                                    | a practice known as domain randomization. With synthetic data,
+                                    | you have full control: vary lighting, textures, object 
+                                    | placement, camera angles, even add fog, dust, or simulated 
+                                    | wear.
+                                p(class="mb-10 text-gray-300") 
+                                    | Want to train for warehouse conditions with poor lighting and 
+                                    | dust buildup? Simulate it. Need your model to handle objects 
+                                    | flipped, stacked, or partially occluded? No problem. Our 
+                                    | datasets retain all randomization parameters, so you can 
+                                    | filter, analyze, or subset based on them before and after training.
 
                     div(class="max-w-5xl mx-auto")
                         div(class="flex flex-wrap items-center justify-center mx-auto")
@@ -107,7 +123,7 @@ html(lang="en")
 
                                 //- Collapsible paragraph
                                 p(
-                                    :class="expanded ? 'text-gray-400' : 'text-gray-400 line-clamp-1'",
+                                    :class="expanded ? 'text-gray-300' : 'text-gray-300 line-clamp-1'",
                                     class="transition-all duration-300"
                                 )
                                     | Abstract—Realistic synthetic image data rendered from 3D
@@ -154,7 +170,7 @@ html(lang="en")
 
                                 //- Collapsible paragraph
                                 p(
-                                    :class="expanded ? 'text-gray-400' : 'text-gray-400 line-clamp-1'",
+                                    :class="expanded ? 'text-gray-300' : 'text-gray-300 line-clamp-1'",
                                     class="transition-all duration-300"
                                 )
                                     | Abstract—Bridging the ‘reality gap’ that separates simulated robotics from experiments on hardware could accelerate robotic
@@ -187,17 +203,21 @@ html(lang="en")
                     div(class="max-w-5xl mx-auto mb-10")
                         div(class="flex flex-wrap items-center justify-center mx-auto")
                             div(class="w-full md:w-3/4 px-4 lg:px-12")
-                                p(class="mb-4 text-white") 
-                                    | Our team comes from backgrounds of robotics, mechanical 
-                                    | engineering, and manufacturing. We ran
-                                    | into the same issue over and over again - we
-                                    | have the AI and RL tools that can accomplish the job, whether
-                                    | it's inspection, object detection, path identification etc.,
-                                    | but open source datasets rarely met our needs for training to
-                                    | accomplish custom tasks, and collecting and labeling real
-                                    | world data is insanely painful and time consuming. So we set
-                                    | out to build a compute pipe that can deliver as much data 
-                                    | as necessary, in any context necessary. 
+                                p(class="mb-4 text-gray-300") 
+                                    | We’re a team of engineers and roboticists with backgrounds in 
+                                    | perception, control, mechanical design, and manufacturing. 
+                                    | Time and again, we hit the same wall: the AI and reinforcement 
+                                    | learning tools are here, ready to deploy — but the data wasn’t. 
+                                    | Public datasets rarely fit the task, and collecting and 
+                                    | labeling real-world data was slow, expensive, and painful.
+
+                                p(class="mb-4 text-gray-300") 
+                                    | So we built our own pipeline — one that generates exactly the 
+                                    | data you need, in the context you need it.
+
+                                p(class="mb-4 text-gray-300") 
+                                    | We’re based in Pittsburgh! If you're in town for a robotics 
+                                    | conference, swing by and say hi.
                                 
             
             //- Page bottom
