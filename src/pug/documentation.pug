@@ -1,0 +1,162 @@
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    link(rel="preconnect", href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap", rel="stylesheet")
+    link(href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,300,500&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="css/tailwind/tailwind.min.css")
+    link(rel="icon", type="image/png", sizes="32x32", href="fav-icon.png")
+    script(src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js", defer="defer")
+
+  body(class="antialiased bg-body text-body font-body")
+
+    //- Navbar
+    div(class="fixed top-0 left-0 w-full z-100 pointer-events-auto bg-body pb-4 mb-4")
+        include components/_navbar.pug
+
+    //- Overlay (click to collapse; only visible on mobile when expanded)
+    div#sidebar-overlay(
+      class="fixed inset-0 bg-body bg-opacity-50 z-40 hidden lg:hidden"
+    )
+
+    //- Sidebar with collapsible width
+    aside#sidebar(
+      class="fixed mt-10 left-0 h-3/4 bg-gray-900 text-gray-200 z-50 transition-all duration-300 ease-in-out overflow-hidden"
+      style="width: 16px;"
+    )
+      //- Arrow toggle (always visible at edge)
+      div#sidebar-arrow(
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer bg-gray-900"
+      )
+        svg(
+          id="arrow-icon"
+          class="w-4 h-4 text-white transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        )
+          path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
+
+      //- Sidebar content (only visible when expanded)
+      div#sidebar-content(class="p-4 hidden")
+        div
+          div(class="mb-4")
+            button(
+              onclick="toggleSection('module1')"
+              class="flex justify-between w-full font-semibold text-white hover:text-green-400"
+            )
+              span MyModule
+              svg(class="w-4 h-4 transition-transform rotate-0" id="arrow-module1" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7")
+            ul#module1(class="pl-4 mt-2 space-y-2 text-sm block")
+              li
+                a(href="#func_a" class="hover:text-green-400") Function A
+              li
+                a(href="#func_b" class="hover:text-green-400") Function B
+
+          div(class="mb-4")
+            button(
+              onclick="toggleSection('module2')"
+              class="flex justify-between w-full font-semibold text-white hover:text-green-400"
+            )
+              span AnotherModule
+              svg(class="w-4 h-4 transition-transform rotate-0" id="arrow-module2" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7")
+            ul#module2(class="pl-4 mt-2 space-y-2 text-sm hidden")
+              li
+                a(href="#func_c" class="hover:text-green-400") Function C
+              li
+                a(href="#func_d" class="hover:text-green-400") Function D
+
+    //- Main content area
+    main(class="p-8 lg:ml-64 space-y-12 mt-20 overflow-y-auto")
+      h1(class="text-5xl font-heading text-white mb-6") Documentation
+
+      include components/_method.pug
+
+      +method(
+        "func_a",
+        "func_a(param1: int, param2: str) -> bool",
+        "Brief description of Function A",
+        ["param1 (int): description", "param2 (str): description"],
+        "from mymodule import func_a\nresult = func_a(10, 'hello')\nprint(result)"
+      )
+
+      +method(
+        "func_b",
+        "func_b(x: float) -> float",
+        "Description of Function B",
+        ["x (float): value to process"],
+        "from mymodule import func_b\nprint(func_b(3.14))"
+      )
+
+
+
+    //- Page bottom
+    include components/_page_bottom.pug
+
+
+    //- Script for sidebar toggle and collapsible sections
+    script.
+      const sidebar = document.getElementById('sidebar');
+      const sidebarContent = document.getElementById('sidebar-content');
+      const arrowIcon = document.getElementById('arrow-icon');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      let expanded = false;
+      const expandedWidth = 256; // px
+      const collapsedWidth = 16; // px
+
+      function expandSidebar() {
+        sidebar.style.width = expandedWidth + 'px';
+        sidebarContent.classList.remove('hidden');
+        arrowIcon.classList.add('rotate-180');
+        overlay.classList.remove('hidden');
+        expanded = true;
+      }
+
+      function collapseSidebar() {
+        sidebar.style.width = collapsedWidth + 'px';
+        sidebarContent.classList.add('hidden');
+        arrowIcon.classList.remove('rotate-180');
+        overlay.classList.add('hidden');
+        expanded = false;
+      }
+
+      // Click on sidebar (collapsed edge or expanded area) toggles open
+      sidebar.addEventListener('click', () => {
+        if (!expanded) expandSidebar();
+      });
+
+      // Clicking outside (overlay) collapses
+      overlay.addEventListener('click', collapseSidebar);
+
+      // Auto collapse on mobile load
+      window.addEventListener('load', () => {
+        if (window.innerWidth < 1024) collapseSidebar();
+        else expandSidebar();
+      });
+
+      // Keep behavior correct on resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+          expandSidebar();
+        } else {
+          collapseSidebar();
+        }
+      });
+
+      // Collapsible sections
+      function toggleSection(id) {
+        const section = document.getElementById(id);
+        const arrow = document.getElementById(`arrow-${id}`);
+        const isHidden = section.classList.contains('hidden');
+        if (isHidden) {
+          section.classList.remove('hidden');
+          arrow.classList.add('rotate-180');
+        } else {
+          section.classList.add('hidden');
+          arrow.classList.remove('rotate-180');
+        }
+      }

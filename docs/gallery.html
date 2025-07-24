@@ -27,11 +27,11 @@
                     <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Home</a></li>
                     <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="about.html">About</a></li>
                     <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
-                    <li class="text-gray-600 font-medium tracking-tighter"><a href="#">Documentation</a></li>
+                    <li class="text-white font-medium hover:text-green-400 tracking-tighter"><a href="documentation.html">Documentation</a></li>
                   </ul>
                 </div>
                 <div class="w-auto hidden lg:block">
-                  <div class="inline-block"><a class="inline-block px-8 py-4 text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact                                </a></div>
+                  <div class="inline-block"><a class="inline-block px-8 py-4 text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
                 </div>
                 <div class="w-auto lg:hidden">
                   <button class="relative z-10 inline-block" x-on:click="mobileNavOpen = !mobileNavOpen">
@@ -45,10 +45,10 @@
             </div>
           </div>
         </div>
-        <div class="hidden fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50" :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}">
+        <div class="hidden fixed top-0 left-0 bottom-0 w-4/5 max-w-xs z-50" :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}">
           <div class="fixed inset-0 bg-black opacity-60" x-on:click="mobileNavOpen = !mobileNavOpen"></div>
-          <nav class="relative z-10 px-9 pt-8 h-full bg-black overflow-y-auto">
-            <div class="flex flex-wrap justify-between h-full">
+          <nav class="fixed top-0 left-0 w-4/5 max-w-xs h-screen bg-black z-50 px-9 pt-8">
+            <div class="flex flex-wrap justify-between h-screen">
               <div class="w-full">
                 <div class="flex items-center justify-between -m-2">
                   <div class="w-auto p-2"><a class="inline-block" href="#"><img src="images/logo-transparent.png" style="max-height: 150px;" alt=""/></a></div>
@@ -66,10 +66,10 @@
                   <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="index.html">Home</a></li>
                   <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="about.html">About</a></li>
                   <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
-                  <li class="text-gray-600 font-medium tracking-tighter"><a href="#">Documentation</a></li>
+                  <li class="text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="documentation.html">Documentation</a></li>
                 </ul>
               </div>
-              <div class="flex flex-col justify-end w-full pb-8"><a class="inline-block px-8 py-4 text-center text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
+              <div class="pb-8"><a class="inline-block px-8 py-4 text-center text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
             </div>
           </nav>
         </div>
