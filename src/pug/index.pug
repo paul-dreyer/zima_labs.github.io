@@ -25,7 +25,7 @@ html(lang="en")
                         
                         div(class="max-w-lg mx-auto text-center", style="max-width: 600px;")
                             h2(class="font-heading mb-6 text-7xl lg:text-8xl text-green-400 tracking-8xl md:max-w-md mx-auto", style="max-width: 700px;") Synthetic Generation
-                            h3(class="mb-6 text-2xl text-white tracking-tighter-xl") Generate synthetic training data from existing CAD assets
+                            h3(class="mb-6 text-2xl text-white") Generate synthetic training data from existing CAD assets
                             
                 div(class="relative")
                     img(class="absolute top-0 left-48", src="template-assets/images/headers/layer-blur.svg", alt="")
@@ -104,7 +104,7 @@ html(lang="en")
                                 div(class="relative z-10 max-w-md text-center mx-auto")
                                     h2(class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full") Bounding Box
                                 div(class="relative z-10 max-w-md text-center mx-auto")
-                                    h2(class="text-lg text-white tracking-tighter break-words text-balance max-w-full") Locate a box containing the object of interest in the image
+                                    h2(class="text-lg text-white break-words text-balance max-w-full") Locate a box containing the object of interest in the image
                                 img(class="absolute bottom-0 right-0", src="template-assets/images/data_types/bg-gray.png", alt="")
 
                         div(class="w-full md:w-1/2 px-4 mt-4")
@@ -113,7 +113,7 @@ html(lang="en")
                                 div(class="relative z-10 max-w-md text-center mx-auto")
                                     h2(class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full") Edge Contour
                                 div(class="relative z-10 max-w-md text-center mx-auto")
-                                    h2(class="text-lg text-white tracking-tighter break-words text-balance max-w-full") A polygon describing the edges of an object of interest
+                                    h2(class="text-lg text-white break-words text-balance max-w-full") A polygon describing the edges of an object of interest
                                 img(class="absolute bottom-0 right-0", src="template-assets/images/data_types/bg-gray.png", alt="")
 
                     
@@ -125,7 +125,7 @@ html(lang="en")
                                 div(class="relative z-10 max-w-md text-center mx-auto")
                                     h2(class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full") Segmentation
                                 div(class="relative z-10 max-w-md text-center mx-auto")
-                                    h2(class="text-lg text-white tracking-tighter break-words text-balance max-w-full") Per-pixel masking of an object of interest
+                                    h2(class="text-lg text-white break-words text-balance max-w-full") Per-pixel masking of an object of interest
                                 img(class="absolute bottom-0 right-0", src="template-assets/images/data_types/bg-gray.png", alt="")
 
                         div(class="w-full md:w-1/2 px-4 mt-4")
@@ -135,7 +135,7 @@ html(lang="en")
                                 div(class="relative z-10 max-w-md text-center mx-auto")
                                     h2(class="text-4xl sm:text-4xl md:text-5xl text-white tracking-tighter break-words text-balance max-w-full") Pose
                                 div(class="relative z-10 max-w-md text-center mx-auto")
-                                    h2(class="text-lg text-white tracking-tighter break-words text-balance max-w-full") The position and orientation of an object of interest
+                                    h2(class="text-lg text-white break-words text-balance max-w-full") The position and orientation of an object of interest
                                 img(class="absolute bottom-0 right-0", src="template-assets/images/data_types/bg-gray.png", alt="")
                         
             
@@ -157,21 +157,21 @@ html(lang="en")
                                 div(class="flex flex-col items-center mb-6")
                                     h2(class="font-heading text-5xl text-white tracking-tighter-xl") Meta Data
                                 
-                                h3(class="mb-6 text-xl text-white tracking-tighter-xl") A huge advantage to using synthetic data is the meta-data we can track for each image, allowing for a much deeper understanding of the context of the image. With our data sets, your team can easily create curriculum-learning training routines, only exposing the network to instances with low object occlusion rates early in training, and gradually exposing instances with more object occlusion as the network learns
+                                h3(class="mb-6 text-xl text-white tracking-wider") A huge advantage to using synthetic data is the meta-data we can track for each image, allowing for a much deeper understanding of the context of the image. With our data sets, your team can easily create curriculum-learning training routines, only exposing the network to instances with low object occlusion rates early in training, and gradually exposing instances with more object occlusion as the network learns
                                 div(class="flex flex-wrap justify-center")
                                     ul
                                         li(class="flex mb-3.5")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Object-to-camera occlusion %
+                                            span(class="text-green-300 text-xl tracking-wider") Object-to-camera occlusion %
                                         li(class="flex mb-3.5")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Camera pose (location + orientation) 
+                                            span(class="text-green-300 text-xl tracking-wider") Camera pose (location + orientation) 
                                         li(class="flex mb-3.5")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Lighting locations and intensities
+                                            span(class="text-green-300 text-xl tracking-wider") Lighting locations and intensities
                                         li(class="flex")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Surface materials and texture tracking 
+                                            span(class="text-green-300 text-xl tracking-wider") Surface materials and texture tracking 
 
                         //- Second group
                         div(class="w-full md:w-1/2")
@@ -179,19 +179,19 @@ html(lang="en")
                                 div(class="flex flex-col items-center mb-6")
                                     h2(class="font-heading text-5xl text-white tracking-tighter-xl") Python Support
                                 
-                                h3(class="mb-6 text-xl text-white tracking-tighter-xl") We're building a public python module which offers dataset manipulation utilities, allowing your team to start training sooner and deploy models faster.
+                                h3(class="mb-6 text-xl text-white tracking-wider") We're building a public python module which offers dataset manipulation utilities, allowing your team to start training sooner and deploy models faster.
                                 
                                 div(class="flex justify-center mx-auto")
                                     ul
                                         li(class="flex mb-3.5")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Domain randomization analysis
+                                            span(class="text-green-300 text-xl tracking-wider") Domain randomization analysis
                                         li(class="flex mb-3.5")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Ablation subset filtering
+                                            span(class="text-green-300 text-xl tracking-wider") Ablation subset filtering
                                         li(class="flex")
                                             img(class="mr-3.5", src="template-assets/images/data_types/checked.svg", alt="")
-                                            span(class="text-green-300 text-xl") Formatting for YOLO training
+                                            span(class="text-green-300 text-xl tracking-wider") Formatting for YOLO training
 
                                 div(class="flex justify-center items-center pt-5")
                                     a(class="inline-flex items-center gap-3 px-8 py-4 text-xl text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300", href="documentation.html")

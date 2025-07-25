@@ -24,14 +24,14 @@
               <div class="flex flex-wrap items-center">
                 <div class="w-auto hidden lg:block">
                   <ul class="flex items-center mr-12">
-                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="index.html">Home</a></li>
-                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="about.html">About</a></li>
-                    <li class="mr-12 text-white font-medium hover:text-green-400 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
-                    <li class="text-white font-medium hover:text-green-400 tracking-tighter"><a href="documentation.html">Documentation</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-green-400"><a href="index.html">Home</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-green-400"><a href="about.html">About</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-green-400"><a href="gallery.html">Data Gallery</a></li>
+                    <li class="text-white font-medium hover:text-green-400"><a href="documentation.html">Documentation</a></li>
                   </ul>
                 </div>
                 <div class="w-auto hidden lg:block">
-                  <div class="inline-block"><a class="inline-block px-8 py-4 text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
+                  <div class="inline-block"><a class="inline-block px-8 py-4 text-black hover:text-white bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
                 </div>
                 <div class="w-auto lg:hidden">
                   <button class="relative z-10 inline-block" x-on:click="mobileNavOpen = !mobileNavOpen">
@@ -63,13 +63,13 @@
               </div>
               <div class="flex flex-col justify-center py-16 w-full">
                 <ul>
-                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="index.html">Home</a></li>
-                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="about.html">About</a></li>
-                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="gallery.html">Data Gallery</a></li>
-                  <li class="text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="documentation.html">Documentation</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90"><a href="index.html">Home</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90"><a href="about.html">About</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90"><a href="gallery.html">Data Gallery</a></li>
+                  <li class="text-white font-medium hover:text-opacity-90"><a href="documentation.html">Documentation</a></li>
                 </ul>
               </div>
-              <div class="pb-8"><a class="inline-block px-8 py-4 text-center text-black hover:text-white tracking-tighter bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
+              <div class="pb-8"><a class="inline-block px-8 py-4 text-center text-black hover:text-white bg-green-400 hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full" href="contact.html">Contact</a></div>
             </div>
           </nav>
         </div>
@@ -146,6 +146,8 @@
                                 </li>
                                 <li><a class="hover:text-black" href="#load_instance_image">load_instance_image</a>
                                 </li>
+                                <li><a class="hover:text-black" href="#load_instance_labels">load_instance_labels</a>
+                                </li>
                                 <li><a class="hover:text-black" href="#load_bounding_box_label">load_bounding_box_label</a>
                                 </li>
                                 <li><a class="hover:text-black" href="#load_contour_label">load_contour_label</a>
@@ -153,8 +155,6 @@
                                 <li><a class="hover:text-black" href="#load_segmentation_label">load_segmentation_label</a>
                                 </li>
                                 <li><a class="hover:text-black" href="#load_pose_label">load_pose_label</a>
-                                </li>
-                                <li><a class="hover:text-black" href="#load_instance_labels">load_instance_labels</a>
                                 </li>
                           </ul>
                         </li>
@@ -281,7 +281,7 @@
           <h3 class="text-2xl text-white mb-2">Directory Structure</h3>
           <p class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
              Zympy datasets have three primary folders; images - labels - meta. Each instance data is 
-            defined using universal unique identifier values, in our case these are 8 character values 
+            defined using universal unique identifier values (UUID), in our case these are 8 character values 
             of mixed integer-string characters, e.g. aA76li11-u163t8F0. Every instance will be identified by 
             the uuid defining the dataset it was generated with (the first 8 characters), followed by the individual instance 
             uuid value (the final 8 characters), sperated by a ' - ' (dash). 
@@ -421,7 +421,7 @@ print(invalid)</code></pre>
               </ul>
               <h3 class="text-xl text-white mb-2">Returns</h3>
               <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
-                <li>DataSetMeta: Pydantic model containing validated metadata and pointers to InstanceMeta subclasses.</li>
+                <li>DataSetMeta: class containing metadata and pointers to validated InstanceMeta pydantic subclasses.</li>
               </ul>
               <h3 class="text-xl text-white mb-2">Example</h3>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
@@ -433,7 +433,7 @@ print(dir(dataset_meta)) # print out all attributes and methods</code></pre>
             </section>
             <section class="mb-12 scroll-mt-28" id="load_instance_meta">
               <h2 class="text-3xl font-heading text-green-300 mb-2">load_instance_meta</h2>
-              <p class="text-gray-300 tracking-wider mb-4">Load the metadata JSON for a specific instance or instances from a dataset.</p>
+              <p class="text-gray-300 tracking-wider mb-4">Load the metadata JSON for a specific instance or instances from a dataset into a validated pydantic model.</p>
               <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_instance_meta(instance_name: List[str], dataset_path: str) -&gt; List[InstanceMeta]</code></div>
               <h3 class="text-xl text-white mb-2">Parameters</h3>
               <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
@@ -442,13 +442,13 @@ print(dir(dataset_meta)) # print out all attributes and methods</code></pre>
               </ul>
               <h3 class="text-xl text-white mb-2">Returns</h3>
               <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
-                <li>List[InstanceMeta]: Validated metadata objects containing object descriptors, camera, lights, etc.</li>
+                <li>List[InstanceMeta]: Validated metadata models containing object descriptors, camera, lights, etc.</li>
               </ul>
               <h3 class="text-xl text-white mb-2">Example</h3>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
                 <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
                 <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_instance_meta
-instances = load_instance_meta(['abc123'], '/path/to/dataset')
+instances = load_instance_meta(['abcd1234-efgh5678'], '/path/to/dataset')
 print(dir(instances)) # print out all attributes and methods</code></pre>
               </div>
             </section>
@@ -469,8 +469,42 @@ print(dir(instances)) # print out all attributes and methods</code></pre>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
                 <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
                 <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_instance_image
-image = load_instance_image('abc123', '/path/to/dataset')
+image = load_instance_image('abcd1234-efgh5678', '/path/to/dataset')
 print(image.shape)</code></pre>
+              </div>
+            </section>
+            <section class="mb-12 scroll-mt-28" id="load_instance_labels">
+              <h2 class="text-3xl font-heading text-green-300 mb-2">load_instance_labels</h2>
+              <p class="text-gray-300 tracking-wider mb-4">Load all labels associated with the instance from the dataset.</p>
+              <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_instance_labels(instance_name: str, dataset_path: str) -&gt; Dict</code></div>
+              <h3 class="text-xl text-white mb-2">Parameters</h3>
+              <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+                <li>instance_name (str): The name or ID of the instance to load.</li>
+                <li>dataset_path (str): Root path to the dataset directory.</li>
+              </ul>
+              <h3 class="text-xl text-white mb-2">Returns</h3>
+              <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+                <li>Dict: A dictionary mapping of UUID values to labels, e.g. 
+<pre><code>{
+	str(uuid): {
+		'bounding_box': [[x0, y0], [x1, y1]],
+		'contour': [[x0, y0], [x1, y1], ..., [xn, yn]],
+		'segmentation':{
+			'array': numpy.ndarray,
+			'index_map': Dict
+		}
+		'pose': Dict
+	},
+	str(uuid): {...},
+	...
+}</code></pre></li>
+              </ul>
+              <h3 class="text-xl text-white mb-2">Example</h3>
+              <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+                <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+                <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_instance_labels
+labels = load_instance_labels('abcd1234-efgh5678', '/path/to/dataset')
+print(labels)</code></pre>
               </div>
             </section>
             <section class="mb-12 scroll-mt-28" id="load_bounding_box_label">
@@ -512,13 +546,13 @@ print(bbox)</code></pre>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
                 <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
                 <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_contour_label
-bbox = load_contour_label('abcd1234-efgh5678', '/path/to/dataset')
-print(bbox)</code></pre>
+contour_label = load_contour_label('abcd1234-efgh5678', '/path/to/dataset')
+print(contour_label)</code></pre>
               </div>
             </section>
             <section class="mb-12 scroll-mt-28" id="load_pose_label">
               <h2 class="text-3xl font-heading text-green-300 mb-2">load_pose_label</h2>
-              <p class="text-gray-300 tracking-wider mb-4">Load the pose label for a specific instance from a dataset.</p>
+              <p class="text-gray-300 tracking-wider mb-4">Load the pose label for a specific instance from a dataset. The first vector in the pose label is the traslation vector to the origin of the object, the second vector is the quaternion describing its orientation</p>
               <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_pose_label(instance_name: str, dataset_path: str) -&gt; Dict</code></div>
               <h3 class="text-xl text-white mb-2">Parameters</h3>
               <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
@@ -527,14 +561,14 @@ print(bbox)</code></pre>
               </ul>
               <h3 class="text-xl text-white mb-2">Returns</h3>
               <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
-                <li>Dict: A dictionary mapping UUIDs to pose data, e.g. `<uuid>: [[x, y, z], [w, x, y, z]]`.</li>
+                <li>Dict: A dictionary mapping UUIDs to pose data with translation vector and orientation quaternion, e.g. <pre><code>{str(uuid): [[x, y, z], [w, x, y, z]], str(uuid): ...,}</code></pre></li>
               </ul>
               <h3 class="text-xl text-white mb-2">Example</h3>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
                 <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
                 <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_pose_label
-pose_data = load_pose_label('abcd1234-efgh5678', '/path/to/dataset')
-print(pose_data)</code></pre>
+pose_label = load_pose_label('abcd1234-efgh5678', '/path/to/dataset')
+print(pose_label)</code></pre>
               </div>
             </section>
             <section class="mb-12 scroll-mt-28" id="load_segmentation_label">
@@ -555,9 +589,11 @@ print(pose_data)</code></pre>
               <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
                 <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
                 <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_segmentation_label
-seg_map, seg_array = load_segmentation_label('abc123', '/path/to/dataset')
+import cv2
+seg_map, seg_array = load_segmentation_label('abcd1234-efgh5678', '/path/to/dataset')
 print(seg_map)
-print(seg_array.shape)</code></pre>
+cv2.imshow('segmentation', seg_array)
+cv2.waitKey(0)</code></pre>
               </div>
             </section>
       <h2 class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20">zympy.mask</h2>
@@ -637,7 +673,7 @@ import cv2
 image = create_empty_rgba(mask_dimensions=(400, 400))
 drawn = draw_bounding_box_2D(image, [(0.1, 0.1, 0.4, 0.4)])
 cv2.imshow('bounding box', drawn)
-cv2.waitkey(0)</code></pre>
+cv2.waitKey(0)</code></pre>
               </div>
             </section>
       <h2 class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20">zympy.filter</h2>

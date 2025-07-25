@@ -24,7 +24,7 @@ div()
     "dataset_path (str): Root path to the dataset directory."
   ],
   [
-    "DataSetMeta: Pydantic model containing validated metadata and pointers to InstanceMeta subclasses."
+    "DataSetMeta: class containing metadata and pointers to validated InstanceMeta pydantic subclasses."
   ],
   "from zympy.zympy_io import load_dataset_meta\ndataset_meta = load_dataset_meta('/path/to/dataset')\nprint(dir(dataset_meta)) # print out all attributes and methods"
 )
@@ -32,15 +32,15 @@ div()
 +method(
   "load_instance_meta",
   "load_instance_meta(instance_name: List[str], dataset_path: str) -> List[InstanceMeta]",
-  "Load the metadata JSON for a specific instance or instances from a dataset.",
+  "Load the metadata JSON for a specific instance or instances from a dataset into a validated pydantic model.",
   [
     "instance_name (List[str]): The name(s) or ID(s) of the instance(s) to load.",
     "dataset_path (str): Root path to the dataset directory."
   ],
   [
-    "List[InstanceMeta]: Validated metadata objects containing object descriptors, camera, lights, etc."
+    "List[InstanceMeta]: Validated metadata models containing object descriptors, camera, lights, etc."
   ],
-  "from zympy.zympy_io import load_instance_meta\ninstances = load_instance_meta(['abc123'], '/path/to/dataset')\nprint(dir(instances)) # print out all attributes and methods"
+  "from zympy.zympy_io import load_instance_meta\ninstances = load_instance_meta(['abcd1234-efgh5678'], '/path/to/dataset')\nprint(dir(instances)) # print out all attributes and methods"
 )
 
 +method(
@@ -54,7 +54,21 @@ div()
   [
     "np.ndarray: Image array loaded from .png file."
   ],
-  "from zympy.zympy_io import load_instance_image\nimage = load_instance_image('abc123', '/path/to/dataset')\nprint(image.shape)"
+  "from zympy.zympy_io import load_instance_image\nimage = load_instance_image('abcd1234-efgh5678', '/path/to/dataset')\nprint(image.shape)"
+)
+
++method(
+  "load_instance_labels",
+  "load_instance_labels(instance_name: str, dataset_path: str) -> Dict",
+  "Load all labels associated with the instance from the dataset.",
+  [
+    "instance_name (str): The name or ID of the instance to load.",
+    "dataset_path (str): Root path to the dataset directory.",
+  ],
+  [
+    "Dict: A dictionary mapping of UUID values to labels, e.g. \n<pre><code>{\n\tstr(uuid): {\n\t\t'bounding_box': [[x0, y0], [x1, y1]],\n\t\t'contour': [[x0, y0], [x1, y1], ..., [xn, yn]],\n\t\t'segmentation':{\n\t\t\t'array': numpy.ndarray,\n\t\t\t'index_map': Dict\n\t\t}\n\t\t'pose': Dict\n\t},\n\tstr(uuid): {...},\n\t...\n}</code></pre>"
+  ],
+  "from zympy.zympy_io import load_instance_labels\nlabels = load_instance_labels('abcd1234-efgh5678', '/path/to/dataset')\nprint(labels)"
 )
 
 +method(
@@ -83,21 +97,21 @@ div()
   [
     "Dict: A dictionary mapping UUIDs to contour coordinates, e.g. `<uuid>: [[[x0, y0], [x1, y1], [x2, y2] ...], [[x0, y0], [x1, y1], [x2, y2] ...]]`."
   ],
-  "from zympy.zympy_io import load_contour_label\nbbox = load_contour_label('abcd1234-efgh5678', '/path/to/dataset')\nprint(bbox)"
+  "from zympy.zympy_io import load_contour_label\ncontour_label = load_contour_label('abcd1234-efgh5678', '/path/to/dataset')\nprint(contour_label)"
 )
 
 +method(
   "load_pose_label",
   "load_pose_label(instance_name: str, dataset_path: str) -> Dict",
-  "Load the pose label for a specific instance from a dataset.",
+  "Load the pose label for a specific instance from a dataset. The first vector in the pose label is the traslation vector to the origin of the object, the second vector is the quaternion describing its orientation",
   [
     "instance_name (str): The name or ID of the instance to load.",
     "dataset_path (str): Root path to the dataset directory.",
   ],
   [
-    "Dict: A dictionary mapping UUIDs to pose data, e.g. `<uuid>: [[x, y, z], [w, x, y, z]]`."
+    "Dict: A dictionary mapping UUIDs to pose data with translation vector and orientation quaternion, e.g. <pre><code>{str(uuid): [[x, y, z], [w, x, y, z]], str(uuid): ...,}</code></pre>"
   ],
-  "from zympy.zympy_io import load_pose_label\npose_data = load_pose_label('abcd1234-efgh5678', '/path/to/dataset')\nprint(pose_data)"
+  "from zympy.zympy_io import load_pose_label\npose_label = load_pose_label('abcd1234-efgh5678', '/path/to/dataset')\nprint(pose_label)"
 )
 
 +method(
@@ -112,7 +126,7 @@ div()
     "Dict: A dictionary mapping part UUID values to segmentation array values.",
     "np.ndarray: The segmentation array containing pixel data."
   ],
-  "from zympy.zympy_io import load_segmentation_label\nseg_map, seg_array = load_segmentation_label('abc123', '/path/to/dataset')\nprint(seg_map)\nprint(seg_array.shape)"
+  "from zympy.zympy_io import load_segmentation_label\nimport cv2\nseg_map, seg_array = load_segmentation_label('abcd1234-efgh5678', '/path/to/dataset')\nprint(seg_map)\ncv2.imshow('segmentation', seg_array)\ncv2.waitKey(0)"
 )
 
 
