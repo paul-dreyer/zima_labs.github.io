@@ -1,0 +1,88 @@
+-
+  docsSidebarData = [
+    {
+      name: "Installation",
+      children: [
+        {
+          name: "Linux",
+          children: [
+            { name: "using conda", href: "#" },
+            { name: "using pip", href: "#" },
+          ],
+        },
+        //- {
+        //-   name: "Windows",
+        //-   children: [
+        //-     { name: "...", href: "#" },
+        //-   ],
+        //- },
+        //- {
+        //-   name: "Mac OS",
+        //-   children: [
+        //-     { name: "...", href: "#" },
+        //-   ],
+        //- },
+      ],
+    },
+    {
+      name: "Getting Started",
+      children: [
+        { name: "Directory Structure", href: "#directory-structure"},
+        { name: "Zympy API", href: "#zympy-api"},
+       
+      ],
+    },
+    {
+      name: "Zympy api",
+      children: [
+        {
+          name: "zympy_io",
+          children: [
+            { name: "get_instance_names", href: "#get_instance_names" },
+            { name: "load_dataset_meta", href: "#load_dataset_meta" },
+            { name: "load_instance_meta", href: "#load_instance_meta" },
+            { name: "load_instance_image", href: "#load_instance_image" },
+            { name: "load_bounding_box_label", href:"#load_bounding_box_label" },
+            { name: "load_contour_label", href:"#load_contour_label" },
+            { name: "load_segmentation_label", href: "#load_segmentation_label" },
+            { name: "load_pose_label", href: "#load_pose_label" },
+            { name: "load_instance_labels", href: "#load_instance_labels" },
+          ],
+        },
+        {
+          name: "mask",
+          children: [
+            { name: "create_empty_rgba", href: "#create_empty_rgba" },
+            { name: "create_bounding_box_2D_mask", href: "#create_bounding_box_2D_mask" },
+            { name: "draw_bounding_box_2D", href: "#draw_bounding_box_2D" },
+         
+          ],
+        },
+        {
+          name: "filter",
+          children: [
+            { name: "filter_uuid", href: "#filter_uuid" },
+          ],
+        },
+        {
+          name: "format",
+          children: [
+            { name: "to_yolo", href: "#to_yolo" },
+          ],
+        },
+        {
+          name: "analyze",
+          children: [
+            { name: "distributions", href: "#distributions" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Full Examples",
+      children: [
+        //- { name: "func_c", href: "#func_c" },
+        //- { name: "func_d", href: "#func_d" },
+      ],
+    },
+  ]

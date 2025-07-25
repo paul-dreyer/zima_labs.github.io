@@ -1,0 +1,54 @@
+include ../../components/_method.pug
+
+
+div()
+
++method(
+  "create_empty_rgba",
+  "create_empty_rgba(reference_image: np.ndarray = None, mask_dimensions: Tuple = None) -> np.ndarray",
+  "Create an RGBA array populated with `(0, 0, 0, 0)`. Uses a reference image to match its width and height, or specify dimensions manually.",
+  [
+    "reference_image (numpy.ndarray): Optional reference image whose dimensions will be used for the mask.",
+    "mask_dimensions (Tuple[int, int]): Desired output dimensions if no reference image is provided."
+  ],
+  [
+    "empty_rgba (numpy.ndarray): An empty transparent RGBA array of the specified dimensions."
+  ],
+  "from zympy.mask import create_empty_rgba\nmask = create_empty_rgba(reference_image=image)\nprint(mask.shape)"
+)
+
+
++method(
+  "create_bounding_box_2D_mask",
+  "create_bounding_box_2D_mask(bounding_boxes: Dict, mask_dimensions: tuple[int, int], active_uuids: set[str] = None, line_thickness: int = DEFAULT_LINE_THICKNESS, color: Tuple = None, color_seed: int = COLOR_SEED) -> np.ndarray",
+  "Construct a transparent mask with bounding boxes annotated.",
+  [
+    "bounding_boxes (Dict): Dictionary containing bounding box labels. Format:\n<pre><code>{\n  str(uuid): [[x0, y0], [x1, y1]],\n  str(uuid): [[x0, y0], [x1, y1]],\n  ...\n}</code></pre>",
+    "active_uuids (set[str], optional): If provided, only annotate bounding boxes whose UUIDs are in this set.",
+    "mask_dimensions (tuple[int, int]): Pixel dimensions `(height, width)` of the output mask.",
+    "line_thickness (int): Bounding box edge thickness in pixels.",
+    "color (tuple[int, int, int, int], optional): RGBA color. If None, random colors will be generated based on UUID and `color_seed`.",
+    "color_seed (int): Seed shift value for random color generation."
+  ],
+  [
+    "mask (numpy.ndarray): Generated transparent mask with bounding boxes drawn."
+  ],
+  "from zympy.mask import create_bounding_box_2D_mask\nmask = create_bounding_box_2D_mask(bounding_boxes, mask_dimensions=(256, 256))"
+)
+
+
++method(
+  "draw_bounding_box_2D",
+  "draw_bounding_box_2D(image: np.ndarray, bbox_normalized_corners: List[Tuple[float, float, float, float]], color: tuple[int, int, int, int] = None, line_thickness: int = DEFAULT_LINE_THICKNESS) -> np.ndarray",
+  "Draw bounding boxes directly onto an image using normalized coordinates.",
+  [
+    "image (numpy.ndarray): The input RGBA image `(H x W x 4)`.",
+    "bbox_normalized_corners (List[Tuple[float, float, float, float]]): Bounding boxes in normalized `[0,1]` coordinates, formatted either as `(x0, y0, x1, y1)` or `((x0, y0), (x1, y1))`.",
+    "color (tuple[int, int, int, int], optional): RGBA color for the box edges.",
+    "line_thickness (int): Thickness of bounding box edges in pixels."
+  ],
+  [
+    "image (numpy.ndarray): Image with drawn bounding boxes."
+  ],
+  "# Draw a box with a random color\n\nfrom zympy.mask import draw_bounding_box_2D, create_empty_rgba\nimport cv2\nimage = create_empty_rgba(mask_dimensions=(400, 400))\ndrawn = draw_bounding_box_2D(image, [(0.1, 0.1, 0.4, 0.4)])\ncv2.imshow('bounding box', drawn)\ncv2.waitkey(0)"
+)

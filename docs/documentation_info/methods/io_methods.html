@@ -1,0 +1,173 @@
+
+<div></div>
+<section class="mb-12 scroll-mt-28" id="get_instance_names">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">get_instance_names</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Get a list of all instance names in a dataset directory. Returns validated and invalid instance name lists.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">get_instance_names(dataset_path: str, verbose: bool = True) -&gt; Tuple[List[str], List[str]]</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>dataset_path (str): Absolute path to the dataset directory</li>
+    <li>verbose (bool): If True, logs validation errors for instances that fail validation checks</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>Tuple[List[str], List[str]]: First list contains validated instances, second list contains invalid instances</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import get_instance_names
+validated, invalid = get_instance_names('/path/to/dataset', verbose=True)
+print(validated)
+print(invalid)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_dataset_meta">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_dataset_meta</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load and validate a DataSetMeta pydantic model from the dataset directory.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_dataset_meta(dataset_path: str) -&gt; DataSetMeta</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>DataSetMeta: Pydantic model containing validated metadata and pointers to InstanceMeta subclasses.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_dataset_meta
+dataset_meta = load_dataset_meta('/path/to/dataset')
+print(dir(dataset_meta)) # print out all attributes and methods</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_instance_meta">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_instance_meta</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load the metadata JSON for a specific instance or instances from a dataset.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_instance_meta(instance_name: List[str], dataset_path: str) -&gt; List[InstanceMeta]</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (List[str]): The name(s) or ID(s) of the instance(s) to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>List[InstanceMeta]: Validated metadata objects containing object descriptors, camera, lights, etc.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_instance_meta
+instances = load_instance_meta(['abc123'], '/path/to/dataset')
+print(dir(instances)) # print out all attributes and methods</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_instance_image">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_instance_image</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load an image for a given instance from the dataset.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_instance_image(instance_name: str, dataset_path: str) -&gt; np.ndarray</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (str): The name or ID of the instance to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>np.ndarray: Image array loaded from .png file.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_instance_image
+image = load_instance_image('abc123', '/path/to/dataset')
+print(image.shape)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_bounding_box_label">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_bounding_box_label</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load the bounding box label for a specific instance from the dataset, supporting 2D or 3D boxes.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_bounding_box_label(instance_name: str, dataset_path: str, box_type: Literal['2D','3D']='2D') -&gt; Dict</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (str): The name or ID of the instance to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+    <li>box_type (Literal['2D','3D']): Define the bounding box type to load ('2D' or '3D').</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>Dict: A dictionary mapping UUIDs to bounding box coordinates, e.g. `<uuid>: [[x0, y0], [x1, y1]]`.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_bounding_box_label
+bbox = load_bounding_box_label('abcd1234-efgh5678', '/path/to/dataset', box_type='2D')
+print(bbox)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_contour_label">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_contour_label</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load the contour label for a specific instance from the dataset.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_contour_label(instance_name: str, dataset_path: str) -&gt; Dict</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (str): The name or ID of the instance to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>Dict: A dictionary mapping UUIDs to contour coordinates, e.g. `<uuid>: [[[x0, y0], [x1, y1], [x2, y2] ...], [[x0, y0], [x1, y1], [x2, y2] ...]]`.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_contour_label
+bbox = load_contour_label('abcd1234-efgh5678', '/path/to/dataset')
+print(bbox)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_pose_label">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_pose_label</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load the pose label for a specific instance from a dataset.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_pose_label(instance_name: str, dataset_path: str) -&gt; Dict</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (str): The name or ID of the instance to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>Dict: A dictionary mapping UUIDs to pose data, e.g. `<uuid>: [[x, y, z], [w, x, y, z]]`.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_pose_label
+pose_data = load_pose_label('abcd1234-efgh5678', '/path/to/dataset')
+print(pose_data)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="load_segmentation_label">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">load_segmentation_label</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Load the segmentation label for a specific instance from a dataset.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">load_segmentation_label(instance_name: str, dataset_path: str) -&gt; Tuple[Dict, np.ndarray]</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>instance_name (str): The name or ID of the instance to load.</li>
+    <li>dataset_path (str): Root path to the dataset directory.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>Dict: A dictionary mapping part UUID values to segmentation array values.</li>
+    <li>np.ndarray: The segmentation array containing pixel data.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.zympy_io import load_segmentation_label
+seg_map, seg_array = load_segmentation_label('abc123', '/path/to/dataset')
+print(seg_map)
+print(seg_array.shape)</code></pre>
+  </div>
+</section>

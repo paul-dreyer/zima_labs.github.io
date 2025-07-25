@@ -1,0 +1,80 @@
+
+<div></div>
+<section class="mb-12 scroll-mt-28" id="create_empty_rgba">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">create_empty_rgba</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Create an RGBA array populated with `(0, 0, 0, 0)`. Uses a reference image to match its width and height, or specify dimensions manually.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">create_empty_rgba(reference_image: np.ndarray = None, mask_dimensions: Tuple = None) -&gt; np.ndarray</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>reference_image (numpy.ndarray): Optional reference image whose dimensions will be used for the mask.</li>
+    <li>mask_dimensions (Tuple[int, int]): Desired output dimensions if no reference image is provided.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>empty_rgba (numpy.ndarray): An empty transparent RGBA array of the specified dimensions.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.mask import create_empty_rgba
+mask = create_empty_rgba(reference_image=image)
+print(mask.shape)</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="create_bounding_box_2D_mask">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">create_bounding_box_2D_mask</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Construct a transparent mask with bounding boxes annotated.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">create_bounding_box_2D_mask(bounding_boxes: Dict, mask_dimensions: tuple[int, int], active_uuids: set[str] = None, line_thickness: int = DEFAULT_LINE_THICKNESS, color: Tuple = None, color_seed: int = COLOR_SEED) -&gt; np.ndarray</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>bounding_boxes (Dict): Dictionary containing bounding box labels. Format:
+<pre><code>{
+  str(uuid): [[x0, y0], [x1, y1]],
+  str(uuid): [[x0, y0], [x1, y1]],
+  ...
+}</code></pre></li>
+    <li>active_uuids (set[str], optional): If provided, only annotate bounding boxes whose UUIDs are in this set.</li>
+    <li>mask_dimensions (tuple[int, int]): Pixel dimensions `(height, width)` of the output mask.</li>
+    <li>line_thickness (int): Bounding box edge thickness in pixels.</li>
+    <li>color (tuple[int, int, int, int], optional): RGBA color. If None, random colors will be generated based on UUID and `color_seed`.</li>
+    <li>color_seed (int): Seed shift value for random color generation.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>mask (numpy.ndarray): Generated transparent mask with bounding boxes drawn.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>from zympy.mask import create_bounding_box_2D_mask
+mask = create_bounding_box_2D_mask(bounding_boxes, mask_dimensions=(256, 256))</code></pre>
+  </div>
+</section>
+<section class="mb-12 scroll-mt-28" id="draw_bounding_box_2D">
+  <h2 class="text-3xl font-heading text-green-300 mb-2">draw_bounding_box_2D</h2>
+  <p class="text-gray-300 tracking-wider mb-4">Draw bounding boxes directly onto an image using normalized coordinates.</p>
+  <div class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20"><code class="text-ray-200 text-sm">draw_bounding_box_2D(image: np.ndarray, bbox_normalized_corners: List[Tuple[float, float, float, float]], color: tuple[int, int, int, int] = None, line_thickness: int = DEFAULT_LINE_THICKNESS) -&gt; np.ndarray</code></div>
+  <h3 class="text-xl text-white mb-2">Parameters</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>image (numpy.ndarray): The input RGBA image `(H x W x 4)`.</li>
+    <li>bbox_normalized_corners (List[Tuple[float, float, float, float]]): Bounding boxes in normalized `[0,1]` coordinates, formatted either as `(x0, y0, x1, y1)` or `((x0, y0), (x1, y1))`.</li>
+    <li>color (tuple[int, int, int, int], optional): RGBA color for the box edges.</li>
+    <li>line_thickness (int): Thickness of bounding box edges in pixels.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Returns</h3>
+  <ul class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+    <li>image (numpy.ndarray): Image with drawn bounding boxes.</li>
+  </ul>
+  <h3 class="text-xl text-white mb-2">Example</h3>
+  <div class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4">
+    <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition" onclick="copyCode(this)">Copy</button>
+    <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code># Draw a box with a random color
+
+from zympy.mask import draw_bounding_box_2D, create_empty_rgba
+import cv2
+image = create_empty_rgba(mask_dimensions=(400, 400))
+drawn = draw_bounding_box_2D(image, [(0.1, 0.1, 0.4, 0.4)])
+cv2.imshow('bounding box', drawn)
+cv2.waitkey(0)</code></pre>
+  </div>
+</section>

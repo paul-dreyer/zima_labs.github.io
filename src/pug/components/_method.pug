@@ -1,18 +1,34 @@
-mixin method(name, signature, desc, params, example)
-  section(id=name class="mb-12")
+mixin method(name, signature, desc, params, returns, example)
+  section(id=name class="mb-12 scroll-mt-28")
     h2(class="text-3xl font-heading text-green-300 mb-2")= name
-    p(class="text-gray-300 mb-4")= desc
 
-    div(class="bg-gray-800 p-4 rounded-lg mb-4")
-      h3(class="text-xl text-white mb-2") Signature
-      code(class="text-green-400 text-sm")= signature
+    p(class="text-gray-300 tracking-wider mb-4")!= desc
 
+    //- Signature block
+    div(class="bg-body border-[1px] border-gray-300 p-4 rounded mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20")
+      code(class="text-ray-200 text-sm")= signature
+
+    //- Parameters
     if params.length
       h3(class="text-xl text-white mb-2") Parameters
-      ul(class="list-disc list-inside text-gray-300 mb-4")
+      ul(class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
         each param in params
-          li= param
+          li!= param
 
+    //- Returns
+    if returns.length
+      h3(class="text-xl text-white mb-2") Returns
+      ul(class="list-disc list-inside text-gray-300 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        each ret in returns
+          li!= ret
+
+    //- Example with copy button
     if example
       h3(class="text-xl text-white mb-2") Example
-      pre(class="bg-gray-900 p-3 rounded text-green-400 text-sm overflow-x-auto")= example
+      div(class="relative bg-gray-900 rounded p-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 mb-4")
+        button(
+          onclick="copyCode(this)"
+          class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition"
+        ) Copy
+        pre(class="whitespace-pre-wrap font-mono text-gray-200 text-sm")
+          code= example

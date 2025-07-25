@@ -1,0 +1,26 @@
+include ../../components/_method.pug
+
+div()
+
++method(
+  "to_yolo",
+  "to_yolo(yolo_version: Literal[5, 8, 11], zympy_dataset_path: str, yolo_dataset_path: str, yolo_dataset_name: str = None, instance_names: List[str] = None, train_val_split: float = 0.8, training_instance_names: List[str] = None, validation_instance_names: List[str] = None, label_type: Literal['bounding_box', 'segmentation'] = 'bounding_box', class_list: List[str] = None, suppress_memory_prompts: bool = False) -> bool",
+  "Converts a ZymPy-format dataset to the directory and label structure required by YOLO (v5, v8, v11) for object detection training. Partitions image instances into training/validation sets, generates label files, builds the YOLO directory structure, and writes a `data.yaml` configuration mapping class indices to UUID-style names.",
+  [
+    "yolo_version (Literal[5, 8, 11]): Target YOLO version to format the dataset for.",
+    "zympy_dataset_path (str): Path to the root of the ZymPy-format dataset containing images and metadata.",
+    "yolo_dataset_path (str): Path to the root output directory where the YOLO-formatted dataset will be written.",
+    "yolo_dataset_name (str, optional): Name to assign to the YOLO dataset folder. Defaults to the ZymPy dataset name if None.",
+    "instance_names (List[str], optional): List of instance UUIDs to include; will be partitioned via `train_val_split` if provided.",
+    "train_val_split (float, optional): Fraction of instances used for training; remainder goes to validation.",
+    "training_instance_names (List[str], optional): Explicit list of training instance names (overrides `train_val_split`).",
+    "validation_instance_names (List[str], optional): Explicit list of validation instance names (overrides `train_val_split`).",
+    "label_type (Literal['bounding_box', 'segmentation'], optional): Type of label to format. Defaults to 'bounding_box'.",
+    "class_list (List[str], optional): Specific UUID strings representing object classes to include. If None, includes all classes.",
+    "suppress_memory_prompts (bool, optional): Suppresses prompts related to memory usage when copying large files."
+  ],
+  [
+    "success (bool): Returns True if the YOLO dataset was created successfully."
+  ],
+  "from zympy.format import to_yolo\n\nsuccess = to_yolo(\n    yolo_version=5,\n    zympy_dataset_path='/data/zympy_dataset',\n    yolo_dataset_path='/data/yolo_dataset',\n    train_val_split=0.8\n)\nprint(success)  # True if successful"
+)

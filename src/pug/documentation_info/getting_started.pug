@@ -1,0 +1,128 @@
+section(class="mb-12")
+  h2(class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20") Getting Started
+
+  div(id="directory-structure" class="p-2 rounded-lg mb-4 scroll-mt-28")
+    h3(class="text-2xl text-white mb-2") Directory Structure
+
+    p(class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Zympy datasets have three primary folders; images - labels - meta. Each instance data is 
+      | defined using universal unique identifier values, in our case these are 8 character values 
+      | of mixed integer-string characters, e.g. aA76li11-u163t8F0. Every instance will be identified by 
+      | the uuid defining the dataset it was generated with (the first 8 characters), followed by the individual instance 
+      | uuid value (the final 8 characters), sperated by a ' - ' (dash). 
+
+    pre(class="bg-body text-gray-200 border-[1px] border-gray-200 p-4 rounded text-sm font-mono overflow-x-auto mr-2 sm:mr-2 md:mr-20 lg:mr-20")
+      | 1a36ecdd &lt;-- The Dataset UUID
+      | ├── images
+      | │   ├── 1a36ecdd-3df894c1.png &lt;-- The Instance UUID
+      | │   ├── 1a36ecdd-98dddb4c.png
+      | │   └── 1a36ecdd-381a6aac.png
+      | ├── labels
+      | │   ├── <a class='text-green-300 font-bold'>bounding_box</a>
+      | │   │   ├── 1a36ecdd-3df894c1
+      | │   │   │    ├── 2D
+      | │   │   │    │   └── data.json
+      | │   │   │    └── 3D
+      | │   │   │        └── data.json
+      | │   │   ├── 1a36ecdd-98dddb4c
+      | │   │   └── 1a36ecdd-381a6aac
+      | │   ├── <a class='text-green-300 font-bold'>contour</a>
+      | │   │   ├── 1a36ecdd-3df894c1
+      | │   │   │   └── data.json
+      | │   │   ├── 1a36ecdd-98dddb4c
+      | │   │   └── 1a36ecdd-381a6aac
+      | │   ├── <a class='text-green-300 font-bold'>pose</a>
+      | │   │   ├── 1a36ecdd-3df894c1
+      | │   │   │   └── data.json
+      | │   │   ├── 1a36ecdd-98dddb4c
+      | │   │   └── 1a36ecdd-381a6aac
+      | │   └── <a class='text-green-300 font-bold'>segmentation</a>
+      | │       ├── 1a36ecdd-3df894c1
+      | │       │   ├── 1a36ecdd-3df894c1.png
+      | │       │   └── data.json
+      | │       ├── 1a36ecdd-98dddb4c
+      | │       └── 1a36ecdd-381a6aac
+      | └── meta
+      |     ├── 1a36ecdd-3df894c1
+      |     │   └── data.json
+      |     ├── 1a36ecdd-98dddb4c
+      |     └── 1a36ecdd-381a6aac
+
+
+  div(id="zympy-api" class="p-2 rounded-lg mt-8 mb-4 scroll-mt-28")
+    h3(class="text-2xl text-white mb-2") Zympy API
+    p(class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | The public python module has several sub-modules available to help you get to training as fast as 
+      | possible. These are organized by: 
+
+    //- zympy_io
+    h3(class="text-xl text-green-300 mb-1 font-bold tracking-wider") zympy.zympy_io 
+    p(class="mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Contains helper functions to load data into memory, i.e: 
+
+    div(class="relative px-4 mb-4")
+      ul(class="list-disc list-inside mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        li Retrieve all the instance names contained in a dataset
+        li Load dataset-level or instance-level meta data
+        li Load images by instance name 
+        li Load labels by instance name
+
+    //- mask
+    h3(class="text-xl text-green-300 mb-1 font-bold tracking-wider") zympy.mask
+    p(class="mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Contains helper functions to create masks from the labels, each of which are composable, i.e: 
+
+    div(class="relative px-4 mb-4")
+      ul(class="list-disc list-inside mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        li Bounding box masks
+        li Contour masks
+        li Segmentation Masks
+        li Pose Masks
+
+    //- Filter
+    h3(class="text-xl text-green-300 mb-1 font-bold tracking-wider") zympy.filter
+    p(class="mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Contains helper functions to filter the dataset for instances that meet some criteria. This 
+      | is targeted towards enabling curriculum learning in vision model training, for example you
+      | may filter a dataset by % occlusion of a certain object of interest - exposing the network 
+      | to intances with low or no occlusion early on, and gradually increase the difficulty over 
+      | multiple epochs. i.e Filter by:
+
+    div(class="relative px-4 mb-4")
+      ul(class="list-disc list-inside mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        li Object UUID presence within the instance
+        li Object position or orientation 
+        li Camera position or orientation
+        li Total lighting energy in the image
+        li Object occlusion %
+        li ...
+
+    //- format
+    h3(class="text-xl text-green-300 mb-1 font-bold tracking-wider") zympy.format
+    p(class="mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Contains helper functions to convert zympy datasets into common external formats, i.e: 
+
+    div(class="relative px-4 mb-4")
+      ul(class="list-disc list-inside mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        li Convert the dataset to YOLO conventions (v5, v8, v11)
+
+    //- format
+    h3(class="text-xl text-green-300 mb-1 font-bold tracking-wider") zympy.analyze
+    p(class="mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider") 
+      | Contains helper functions to compute statistics about the dataset, i.e: 
+
+    div(class="relative px-4 mb-4")
+      ul(class="list-disc list-inside mb-2 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider")
+        li Object pose distributions 
+        li Camera pose distributions 
+
+
+
+
+
+
+    
+
+    
+
+      

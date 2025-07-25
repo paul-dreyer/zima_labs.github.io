@@ -8,11 +8,16 @@ html(lang="en")
     link(rel="stylesheet", href="css/tailwind/tailwind.min.css")
     link(rel="icon", type="image/png", sizes="32x32", href="fav-icon.png")
     script(src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js", defer="defer")
+  
+  
 
   body(class="antialiased bg-body text-body font-body")
 
+    include components/_doc_sidebar_data.pug
+    include components/_sidebar_item.pug
+
     //- Navbar
-    div(class="fixed top-0 left-0 w-full z-100 pointer-events-auto bg-body pb-4 mb-4")
+    div(class="fixed top-0 left-0 w-full z-[9999] pointer-events-auto bg-body pb-4 mb-4")
         include components/_navbar.pug
 
     //- Overlay (click to collapse; only visible on mobile when expanded)
@@ -27,7 +32,7 @@ html(lang="en")
     )
       //- Arrow toggle (always visible at edge)
       div#sidebar-arrow(
-        class="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer bg-gray-900"
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer bg-gray-900 lg:hidden"
       )
         svg(
           id="arrow-icon"
@@ -40,65 +45,46 @@ html(lang="en")
 
       //- Sidebar content (only visible when expanded)
       div#sidebar-content(class="p-4 hidden")
-        div
-          div(class="mb-4")
-            button(
-              onclick="toggleSection('module1')"
-              class="flex justify-between w-full font-semibold text-white hover:text-green-400"
-            )
-              span MyModule
-              svg(class="w-4 h-4 transition-transform rotate-0" id="arrow-module1" fill="none" stroke="currentColor" viewBox="0 0 24 24")
-                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7")
-            ul#module1(class="pl-4 mt-2 space-y-2 text-sm block")
-              li
-                a(href="#func_a" class="hover:text-green-400") Function A
-              li
-                a(href="#func_b" class="hover:text-green-400") Function B
+        ul
+          each module in docsSidebarData
+            li(class="mb-6")
+              +sidebarItem(module, '')
 
-          div(class="mb-4")
-            button(
-              onclick="toggleSection('module2')"
-              class="flex justify-between w-full font-semibold text-white hover:text-green-400"
-            )
-              span AnotherModule
-              svg(class="w-4 h-4 transition-transform rotate-0" id="arrow-module2" fill="none" stroke="currentColor" viewBox="0 0 24 24")
-                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7")
-            ul#module2(class="pl-4 mt-2 space-y-2 text-sm hidden")
-              li
-                a(href="#func_c" class="hover:text-green-400") Function C
-              li
-                a(href="#func_d" class="hover:text-green-400") Function D
 
     //- Main content area
-    main(class="p-8 lg:ml-64 space-y-12 mt-20 overflow-y-auto")
+    main(class="p-8 lg:ml-64 max-w-3/4 space-y-12 mt-20 overflow-y-auto")
       h1(class="text-5xl font-heading text-white mb-6") Documentation
 
-      include components/_method.pug
+      div(class="relative mt-20 mb-20")
+        h3(class="text-3xl font-heading text-green-300 mb-6") 
+          | NOTE: The public zympy module is scheduled for initial release August 1, 2025
 
-      +method(
-        "func_a",
-        "func_a(param1: int, param2: str) -> bool",
-        "Brief description of Function A",
-        ["param1 (int): description", "param2 (str): description"],
-        "from mymodule import func_a\nresult = func_a(10, 'hello')\nprint(result)"
-      )
+      include documentation_info/installation.pug
 
-      +method(
-        "func_b",
-        "func_b(x: float) -> float",
-        "Description of Function B",
-        ["x (float): value to process"],
-        "from mymodule import func_b\nprint(func_b(3.14))"
-      )
+      include documentation_info/getting_started.pug
 
 
+      h2(class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20") zympy.zympy_io
+      include documentation_info/methods/io_methods.pug
 
+   
+      h2(class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20") zympy.mask
+      include documentation_info/methods/mask_methods.pug
+
+
+      h2(class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20") zympy.filter
+      //-include documentation_info/methods/mask_methods.pug
+
+      h2(class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20") zympy.format
+      include documentation_info/methods/format_methods.pug
+
+      
     //- Page bottom
     include components/_page_bottom.pug
 
-
     //- Script for sidebar toggle and collapsible sections
     script.
+  
       const sidebar = document.getElementById('sidebar');
       const sidebarContent = document.getElementById('sidebar-content');
       const arrowIcon = document.getElementById('arrow-icon');
@@ -138,7 +124,6 @@ html(lang="en")
         else expandSidebar();
       });
 
-      // Keep behavior correct on resize
       window.addEventListener('resize', () => {
         if (window.innerWidth >= 1024) {
           expandSidebar();
@@ -159,4 +144,18 @@ html(lang="en")
           section.classList.add('hidden');
           arrow.classList.remove('rotate-180');
         }
+      }
+
+      function copyCode(button) {
+        const code = button.nextElementSibling.innerText;
+
+        navigator.clipboard.writeText(code).then(() => {
+          button.innerHTML = 'Copied &#10003;'; // Checkmark ✓
+          button.classList.add('bg-green-300');
+
+          setTimeout(() => {
+            button.innerHTML = 'Copy';
+            button.classList.remove('bg-green-300');
+          }, 2000);
+        });
       }

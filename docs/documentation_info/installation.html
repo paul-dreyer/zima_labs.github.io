@@ -1,0 +1,47 @@
+
+<section class="mb-12 z-0">
+  <h2 class="text-3xl font-heading text-white border-b-[3px] border-green-300 pb-2 w-full mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20">Installation</h2>
+  <div class="p-2 rounded-lg mb-4">
+    <h3 class="text-2xl text-white mb-4">Linux</h3>
+    <h3 class="text-xl text-white mb-2">With Anaconda</h3>
+    <p class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+       We recomend using Anaconda or some other virtual environment manager to handle dependencies.
+      To install Conda -  
+      <a href='https://www.anaconda.com/download/success' class='underline text-green-300'>see here.</a>
+    </p>
+    <p class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+       After installing conda, create and activate an environment using:</p>
+    <div class="relative bg-gray-900 rounded-lg p-4 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 z-0">
+      <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition z-0" onclick="copyCode(this)">Copy</button>
+      <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>conda create -n &lt;name of your environment&gt; python=3.11</code></pre>
+    </div>
+    <div class="relative bg-gray-900 rounded-lg p-4 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 z-0">
+      <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition z-0" onclick="copyCode(this)">Copy  </button>
+      <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>conda activate &lt;name of your environment&gt;</code></pre>
+    </div>
+    <p class="mb-4 text-gray-300 mr-2 sm:mr-2 md:mr-20 lg:mr-20 tracking-wider">
+       With your environment active [you'll see (&lt;name of your environment&gt;) at the left of your terminal], run the pip command:</p>
+    <div class="relative bg-gray-900 rounded-lg p-4 mb-4 mr-2 sm:mr-2 md:mr-20 lg:mr-20 z-0">
+      <button class="absolute top-2 right-2 text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-green-300 transition z-0" onclick="copyCode(this)">Copy</button>
+      <pre class="whitespace-pre-wrap font-mono text-gray-200 text-sm"><code>pip install zympy</code></pre>
+    </div>
+  </div>
+</section>
+<script>
+  function copyCode(button) {
+    // Get the code text (next sibling <pre>)
+    const code = button.nextElementSibling.innerText;
+  
+    navigator.clipboard.writeText(code).then(() => {
+      // Change button text to 'Copied ✓'
+      button.innerHTML = 'Copied &#10003;'; // &#10003; = checkmark ✓
+      button.classList.add('bg-green-300'); // Optional: green feedback color
+  
+      // Reset back to 'Copy' after 2 seconds
+      setTimeout(() => {
+        button.innerHTML = 'Copy';
+        button.classList.remove('bg-green-300');
+      }, 2000);
+    });
+  }
+</script>
